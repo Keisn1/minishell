@@ -6,7 +6,7 @@
 /*   By: erian <erian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 15:36:06 by erian             #+#    #+#             */
-/*   Updated: 2025/01/18 16:49:59 by erian            ###   ########.fr       */
+/*   Updated: 2025/01/18 17:38:57 by erian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,8 +123,9 @@ int execute_command(t_cmd_node cmd_node, char **ep, t_data *data)
 
 		// printf("->%s\n", argv[0]);
 		// printf("->%s\n", argv[1]);
-
-		res = custom_exec(cmd_path, argv, ep, fds);
+		
+		if (argv)
+			res = custom_exec(cmd_path, argv, ep, fds);
 		free_matrix(argv);
 		free(cmd_path);
 	}

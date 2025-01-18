@@ -6,7 +6,7 @@
 /*   By: erian <erian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 12:50:09 by erian             #+#    #+#             */
-/*   Updated: 2025/01/18 16:09:52 by erian            ###   ########.fr       */
+/*   Updated: 2025/01/18 18:10:58 by erian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ char	*process_entry(char *r, size_t *rl, const char *dp, const char *en)
 		free(r);
 		return (NULL);
 	}
+	// printf("<> %zu <> %s <> %s <>\n", *rl, dp, en);
 	r = append_entry_to_result(r, rl, full_path);
 	free(full_path);
 	return (r);
@@ -78,6 +79,8 @@ char **process_directory(const char *dir_path, const char *pattern, char **argv)
     size_t result_len = 0;
     while ((entry = readdir(dir)) != NULL)
     {
+		if (ft_strcmp(entry->d_name, ".") == 0 || ft_strcmp(entry->d_name, "..") == 0)
+            continue ;
         if (matches_pattern(pattern, entry->d_name))
         {
             result = process_entry(result, &result_len, dir_path, entry->d_name);

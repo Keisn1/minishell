@@ -6,7 +6,7 @@
 /*   By: erian <erian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 14:27:01 by erian             #+#    #+#             */
-/*   Updated: 2025/01/18 14:56:43 by erian            ###   ########.fr       */
+/*   Updated: 2025/01/18 18:27:21 by erian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char *get_dir_path(const char *word, char **pattern)
     char *slash = ft_strrchr(word, '/');
     if (slash)
     {
-        *pattern = strdup(slash + 1);
+        *pattern = ft_strdup(slash + 1);
         return ft_substr(word, 0, slash - word);
     }
     *pattern = ft_strdup(word);
@@ -60,6 +60,10 @@ char *create_result_buffer()
 
 char *build_full_path(const char *dir_path, const char *entry_name)
 {
+    if (ft_strcmp(dir_path, ".") == 0)
+        return ft_strdup(entry_name);
+
+    // Otherwise, construct the full path
     size_t dir_len = ft_strlen(dir_path);
     size_t entry_len = ft_strlen(entry_name);
     size_t full_len = dir_len + entry_len + 2;
