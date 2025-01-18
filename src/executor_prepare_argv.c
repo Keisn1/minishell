@@ -6,7 +6,7 @@
 /*   By: erian <erian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:02:55 by erian             #+#    #+#             */
-/*   Updated: 2025/01/17 15:24:20 by erian            ###   ########.fr       */
+/*   Updated: 2025/01/18 13:43:52 by erian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ static char	**handle_wildcard_expansion(t_argument *arg, char **argv, size_t *i)
 	free_matrix(argv);
 	argv = temp_matrix;
 	*i = ft_matrix_size(argv);
+	if (argv)
+		argv[*i] = NULL;
 	return (argv);
 }
 
@@ -75,15 +77,20 @@ static char	**fill_argv(t_list *list, char **argv, size_t *i, t_data *data)
 			list = list->next;
 			continue ;
 		}
-		processed_word = process_argument(argument, data);
-		if (!processed_word)
+		else
 		{
-			free_matrix(argv);
-			return (NULL);
+			processed_word = process_argument(argument, data);
+			if (!processed_word)
+			{
+				free_matrix(argv);
+				return (NULL);
+			}
+			argv[*i] = processed_word;
+			(*i)++;
 		}
-		argv[*i++] = processed_word;
 		list = list->next;
 	}
+	argv[*i] = NULL;
 	return (argv);
 }
 
@@ -103,6 +110,6 @@ char	**list_to_argv(t_list *list, char *cmd_path, t_data *data)
 	argv = fill_argv(tmp, argv, &i, data);
 	if (!argv)
 		return (NULL);
-	argv[i] = (NULL);
+	argv[i] = NULL;
 	return (argv);
 }
