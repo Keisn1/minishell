@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erian <erian@student.42.fr>                +#+  +:+       +#+        */
+/*   By: erian <erian@student.42>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 15:36:06 by erian             #+#    #+#             */
-/*   Updated: 2025/01/17 14:29:33 by erian            ###   ########.fr       */
+/*   Updated: 2025/01/22 16:11:08 by erian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,17 +122,6 @@ int	echo(t_cmd_node cmd_node, int fds[2])
 	return (res);
 }
 
-int	export(t_list *ep)
-{
-	while (ep)
-	{
-		t_env_var *env_var = (t_env_var*)ep->content;
-		printf("declare -x %s=\"%s\"\n", env_var->key, env_var->value);
-		ep = ep->next;
-	}
-	return EXIT_SUCCESS;
-}
-
 int expand(t_cmd_node *cmd_node, t_data *data) {
 
 	if (expand_redirections(cmd_node, data) == EXIT_FAILURE)
@@ -147,7 +136,7 @@ int execute_builtin(t_cmd_node *cmd_node, t_data *data, int fds[2]) {
 	if (!ft_strcmp("echo", cmd_node->cmd_token.content))
 		return echo(*cmd_node, fds);
 	if (!ft_strcmp("export", cmd_node->cmd_token.content))
-		return (export(data->ep));
+		return (export(data->ep, cmd_node));
 	return EXIT_SUCCESS;
 }
 
@@ -169,7 +158,7 @@ int	execute_command(t_cmd_node *cmd_node, t_data *data)
 	res = EXIT_SUCCESS;
 	if (cmd_node->cmd_token.type == BUILTIN)
 		res = execute_builtin(cmd_node, data, fds);
-	if (cmd_node->cmd_token.type == WORD)
+	else if (cmd_node->cmd_token.type == WORD)
 	{
 		path_env = get_path_env(data->ep);
 		cmd_path = find_path(cmd_node->cmd_token.content, path_env);

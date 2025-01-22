@@ -67,4 +67,7 @@ bool	hidden_n_star(char *entry, char *pattern);
 void	expand_env(t_list *arguments, t_data *data);
 int	expand_arguments(t_cmd_node *cmd_node, t_data *data);
 int	expand_redirections(t_cmd_node *cmd_node, t_data *data);
+
+// executor_export
+int	export(t_list *ep, t_cmd_node *cmd_node);
 #endif // EXECUTOR_
