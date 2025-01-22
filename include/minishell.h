@@ -33,6 +33,7 @@ typedef struct	s_data
 /* ************************************************************************** */
 
 // free.c
+void free_env_var(void *content);
 void	free_data(t_data *data);
 
 t_data	*init(char **ep);

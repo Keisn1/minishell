@@ -6,11 +6,74 @@
 /*   By: erian <erian@student.42>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 13:28:21 by erian             #+#    #+#             */
-/*   Updated: 2025/01/22 17:44:26 by erian            ###   ########.fr       */
+/*   Updated: 2025/01/22 19:58:43 by erian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "executor.h"
+
+// static void	add_exp(char *str, t_list *ep)
+// {
+// 	t_list	*new;
+// 	t_env_var *new_ep;
+// 	char	*res;
+
+// 	res = ft_strdup(str);
+// 	new = env_lstnew(res);
+// 	env_lstadd_back(&env, new);
+// }
+
+// void	delete_and_add_exp(char *str, t_list *ep)
+// {
+// 	t_list	*tmp_lst;
+// 	t_env_var *tmp_ep;
+// 	int		i;
+
+// 	i = 0;
+// 	tmp_lst = ep;
+// 	while (str[i] != '=')
+// 		i++;
+// 	while (tmp_lst->content)
+// 	{
+// 		tmp_ep = (t_env_var *)tmp_lst;
+// 		if (ft_strncmp(str, tmp_ep->key, i) == 0)
+// 		{
+// 			free(tmp_ep->key);
+// 			tmp_ep->key = ft_strdup(str);
+// 		}
+// 		tmp_lst = tmp_lst->next;
+// 	}
+// }
+
+// bool	export_exist(char *data, t_list *ep)
+// {
+// 	t_list	*tmp_lst;
+// 	t_env_var	*tmp_env;
+// 	char	*tmp_str;
+// 	int		i;
+
+// 	i = 0;
+// 	tmp_lst = ep;
+// 	tmp_env = (t_env_var *)ep->content;
+// 	while (data[i] != '=' && data[i] != '\0')
+// 		i++;
+// 	if (data[i] == '\0')
+// 		tmp_str = ft_strdup(data);
+// 	else
+// 		tmp_str = ft_substr(data, 0, i);
+// 	while (tmp_lst->content)
+// 	{
+// 		if (ft_strncmp(tmp_env->key, tmp_str, ft_strlen(tmp_str)) == 0)
+// 		{
+// 			free(tmp_str);
+// 			return (true);
+// 		}
+// 		tmp_lst = tmp_lst->next;
+// 		tmp_env = tmp_lst->content;
+// 	}
+// 	free(tmp_str);
+// 	return (false);
+// }
 
 bool	valid_name(char *arg)
 {
@@ -95,6 +158,7 @@ void	print_export(t_list *ep)
             printf("declare -x %s\n", env_var->key);
         tmp_ep = tmp_ep->next;
 	}
+	ft_lstclear(&(tmp_ep), free_env_var);
 }
 
 int	export(t_list *ep, t_cmd_node *cmd_node)
@@ -118,7 +182,10 @@ int	export(t_list *ep, t_cmd_node *cmd_node)
 	// 		return EXIT_FAILURE;
 	// 	if (ft_strchr(argument, '='))
 	// 	{
-			
+	// 		if (export_exist(argument, ep) == 0)
+	// 			delete_and_add_exp(argument, ep);
+	// 		else
+	// 			add_exp(argument, ep);
 	// 	}
 	// }
 
