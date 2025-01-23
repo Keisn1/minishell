@@ -6,7 +6,7 @@
 /*   By: erian <erian@student.42>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 13:28:21 by erian             #+#    #+#             */
-/*   Updated: 2025/01/23 17:03:36 by erian            ###   ########.fr       */
+/*   Updated: 2025/01/23 17:18:24 by erian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,54 +30,43 @@ bool	valid_var(char *arg)
 bool	add_expansions(t_list **ep, t_list *arg_lst)
 {
 	t_list		*arg_i;
-	t_list		*new_lst_node;
 	t_env_var	*new_var;
 	t_argument	*current_arg;
 	char		*key;
 	char		*value;
 
 	arg_i = arg_lst;
-	while (arg_i && arg_i->next && arg_i->next->next)
+	while (arg_i)
 	{
 		current_arg = (t_argument *)arg_i->content;
-		if (!valid_var(current_arg->word))
-			return (false);
-		key = ft_strdup(current_arg->word);
-		// printf("->%s\n", key);
+		key = current_arg->word;
 
-		arg_i = arg_i->next;
-		current_arg = (t_argument *)arg_i->content;
-		if (ft_strcmp(current_arg->word, "=") != 0)
+		if (arg_i->next && ft_strcmp(((t_argument *)arg_i->next->content)->word, "=") == 0)
 		{
-			// printf("->here\n");
-			free(key);
-			return (false);
+			arg_i = arg_i->next->next;
+			if (arg_i && ((t_argument *)arg_i->content)->word[0] != '=')
+			{
+				value = ft_strdup(((t_argument *)arg_i->content)->word);
+				arg_i = arg_i->next;
+			}
+			else
+			{
+				value = ft_strdup("");
+			}
 		}
-
-		arg_i = arg_i->next;
-		current_arg = (t_argument *)arg_i->content;
-		value = ft_strdup(current_arg->word);
-		// printf("->%s\n", value);
+		else
+		{
+			value = ft_strdup("");
+			arg_i = arg_i->next;
+		}
 
 		new_var = malloc(sizeof(t_env_var));
 		if (!new_var)
-		{
-			free(key);
-			free(value);
 			return (false);
-		}
-		new_var->key = key;
+		new_var->key = ft_strdup(key);
 		new_var->value = value;
-		new_lst_node = ft_lstnew(new_var);
-		if (!new_lst_node)
-		{
-			free(new_var->key);
-			free(new_var->value);
-			free(new_var);
-			return (false);
-		}
-		ft_lstadd_back(ep, new_lst_node);
-		arg_i = arg_i->next;
+
+		ft_lstadd_back(ep, ft_lstnew(new_var));
 	}
 	return (true);
 }
@@ -164,9 +153,6 @@ int	export(t_list *ep, t_cmd_node *cmd_node)
 	
 	if (!add_expansions(&ep, (t_list *)cmd_node->arguments))
 		return EXIT_FAILURE;
-	
-	// print_export(ep);
-
 
 	return EXIT_SUCCESS;
 }
