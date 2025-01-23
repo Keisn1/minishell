@@ -6,7 +6,7 @@
 /*   By: erian <erian@student.42>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 15:36:06 by erian             #+#    #+#             */
-/*   Updated: 2025/01/22 16:11:08 by erian            ###   ########.fr       */
+/*   Updated: 2025/01/23 16:15:17 by erian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,6 @@ int execute_builtin(t_cmd_node *cmd_node, t_data *data, int fds[2]) {
 		return (export(data->ep, cmd_node));
 	return EXIT_SUCCESS;
 }
-
 
 int	execute_command(t_cmd_node *cmd_node, t_data *data)
 {

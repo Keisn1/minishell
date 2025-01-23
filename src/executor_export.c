@@ -6,85 +6,78 @@
 /*   By: erian <erian@student.42>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 13:28:21 by erian             #+#    #+#             */
-/*   Updated: 2025/01/22 19:58:43 by erian            ###   ########.fr       */
+/*   Updated: 2025/01/23 17:03:36 by erian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "executor.h"
 
-// static void	add_exp(char *str, t_list *ep)
-// {
-// 	t_list	*new;
-// 	t_env_var *new_ep;
-// 	char	*res;
-
-// 	res = ft_strdup(str);
-// 	new = env_lstnew(res);
-// 	env_lstadd_back(&env, new);
-// }
-
-// void	delete_and_add_exp(char *str, t_list *ep)
-// {
-// 	t_list	*tmp_lst;
-// 	t_env_var *tmp_ep;
-// 	int		i;
-
-// 	i = 0;
-// 	tmp_lst = ep;
-// 	while (str[i] != '=')
-// 		i++;
-// 	while (tmp_lst->content)
-// 	{
-// 		tmp_ep = (t_env_var *)tmp_lst;
-// 		if (ft_strncmp(str, tmp_ep->key, i) == 0)
-// 		{
-// 			free(tmp_ep->key);
-// 			tmp_ep->key = ft_strdup(str);
-// 		}
-// 		tmp_lst = tmp_lst->next;
-// 	}
-// }
-
-// bool	export_exist(char *data, t_list *ep)
-// {
-// 	t_list	*tmp_lst;
-// 	t_env_var	*tmp_env;
-// 	char	*tmp_str;
-// 	int		i;
-
-// 	i = 0;
-// 	tmp_lst = ep;
-// 	tmp_env = (t_env_var *)ep->content;
-// 	while (data[i] != '=' && data[i] != '\0')
-// 		i++;
-// 	if (data[i] == '\0')
-// 		tmp_str = ft_strdup(data);
-// 	else
-// 		tmp_str = ft_substr(data, 0, i);
-// 	while (tmp_lst->content)
-// 	{
-// 		if (ft_strncmp(tmp_env->key, tmp_str, ft_strlen(tmp_str)) == 0)
-// 		{
-// 			free(tmp_str);
-// 			return (true);
-// 		}
-// 		tmp_lst = tmp_lst->next;
-// 		tmp_env = tmp_lst->content;
-// 	}
-// 	free(tmp_str);
-// 	return (false);
-// }
-
-bool	valid_name(char *arg)
+bool	valid_var(char *arg)
 {
 	int	i;
 
-	i = 0;
-	while (arg[i] != '=' && arg[i] != '\0')
+	i = -1;
+	if (!(ft_isalpha(arg[0]) || arg[i] == '_'))
+		return (false);
+	while (arg[++i])
 	{
-		if (arg[i] == '-')
+		if (!(ft_isalnum(arg[i]) || arg[i] == '_'))
 			return (false);
-		i++;
+	}
+	return (true);
+}
+
+bool	add_expansions(t_list **ep, t_list *arg_lst)
+{
+	t_list		*arg_i;
+	t_list		*new_lst_node;
+	t_env_var	*new_var;
+	t_argument	*current_arg;
+	char		*key;
+	char		*value;
+
+	arg_i = arg_lst;
+	while (arg_i && arg_i->next && arg_i->next->next)
+	{
+		current_arg = (t_argument *)arg_i->content;
+		if (!valid_var(current_arg->word))
+			return (false);
+		key = ft_strdup(current_arg->word);
+		// printf("->%s\n", key);
+
+		arg_i = arg_i->next;
+		current_arg = (t_argument *)arg_i->content;
+		if (ft_strcmp(current_arg->word, "=") != 0)
+		{
+			// printf("->here\n");
+			free(key);
+			return (false);
+		}
+
+		arg_i = arg_i->next;
+		current_arg = (t_argument *)arg_i->content;
+		value = ft_strdup(current_arg->word);
+		// printf("->%s\n", value);
+
+		new_var = malloc(sizeof(t_env_var));
+		if (!new_var)
+		{
+			free(key);
+			free(value);
+			return (false);
+		}
+		new_var->key = key;
+		new_var->value = value;
+		new_lst_node = ft_lstnew(new_var);
+		if (!new_lst_node)
+		{
+			free(new_var->key);
+			free(new_var->value);
+			free(new_var);
+			return (false);
+		}
+		ft_lstadd_back(ep, new_lst_node);
+		arg_i = arg_i->next;
 	}
 	return (true);
 }
@@ -163,31 +156,17 @@ void	print_export(t_list *ep)
 
 int	export(t_list *ep, t_cmd_node *cmd_node)
 {
-	// int i;
-	// t_argument *arg;
-	// char *argument;
-
 	if (!ft_lstsize(cmd_node->arguments))
 	{
 		print_export(ep);
 		return EXIT_SUCCESS;
 	}
 	
-	// arg = (t_argument *)cmd_node->arguments->content;
+	if (!add_expansions(&ep, (t_list *)cmd_node->arguments))
+		return EXIT_FAILURE;
+	
+	// print_export(ep);
 
-	// while (cmd_node->arguments->next)
-	// {
-	// 	argument = (char *)arg->word;
-	// 	if (!valid_name(argument))
-	// 		return EXIT_FAILURE;
-	// 	if (ft_strchr(argument, '='))
-	// 	{
-	// 		if (export_exist(argument, ep) == 0)
-	// 			delete_and_add_exp(argument, ep);
-	// 		else
-	// 			add_exp(argument, ep);
-	// 	}
-	// }
 
 	return EXIT_SUCCESS;
 }
