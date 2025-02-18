@@ -13,4 +13,4 @@
 </p>
 #+end_export
 
-* Table of Contents :TOC_2:
+* Table of Content :TOC_2:

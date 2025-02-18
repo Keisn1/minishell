@@ -8,4 +8,4 @@
 <img alt="GitHub Lines of Code" src="https://tokei.rs/b1/github/Keisn1/minishell?category=code" />
 </p>
 
-# Table of Contents <span class="tag" tag-name="TOC_2"><span class="smallcaps">TOC_2</span></span>
+# Table of Content [[TOC_2]{.smallcaps}]{.tag tag-name="TOC_2"} {#table-of-content}
