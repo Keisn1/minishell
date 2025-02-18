@@ -1,4 +1,4 @@
-#+title: Push Swap
+#+title: Minishell
 #+macro: minishell-cover [[file:cover-minishell-bonus.png]]
 #+options: ^:nil
 
