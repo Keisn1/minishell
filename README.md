@@ -1,6 +1,3 @@
----
-title: Minishell
----
 
 ![](cover-minishell-bonus.png)
 
@@ -12,3 +9,7 @@ title: Minishell
 </p>
 
 # Table of Content <span class="tag" tag-name="TOC_2"><span class="smallcaps">TOC_2</span></span>
+
+- [nothing yet](#nothing-yet)
+
+# nothing yet
