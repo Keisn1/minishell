@@ -110,15 +110,21 @@ at a basic level.
 
 # How the project went
 
-  - lots of reading of documentation of how bash works
-  - communication between partners
-      - trust between partners heavily on tests
-      - communication about behavior heavily relying on tests,
-        especially during lexer and parser stage
-  - correct parsing of strings is a big part
-      - over-engineering in the beginning has been a problem that bid us
-        later because of variety of cases that can appear, with the bash
-        "laisse-faire" approach of expansions etc.
+Our Minishell project involved extensive reading of Bash documentation
+to understand its workings thoroughly.
+
+Unlike many teams that divided responsibilities between parser and
+executor, we adopted a collaborative approach, tackling tasks together
+as they arose. This strategy provided us with more control over the
+integration of components and allowed for quicker adjustments.
+
+Correctly parsing and interpreting commands proved to be crucial; we
+faced issues from initial over-engineering due to the wide variety of
+cases in Bash's "laissez-faire" style of expansions.
+
+We relied heavily on tests, detailed further in the
+[3.1](#*Tests%20and%20Test%20Driven%20Development) section, to guide our
+development and ensure reliability.
 
 ## Tests and Test Driven Development
 
