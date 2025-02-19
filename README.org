@@ -14,6 +14,57 @@
 #+end_export
 
 * Table of Content :TOC_2:
-- [[#nothing-yet][nothing yet]]
+- [[#what-is-minishell][What is Minishell?]]
+- [[#building-blocks][Building Blocks]]
+  - [[#lexer][Lexer]]
+  - [[#parser][Parser]]
+  - [[#executor][Executor]]
+- [[#how-the-project-went][How the project went]]
+  - [[#tests-and-test-driven-development][Tests and Test Driven Development]]
+  - [[#time-management][Time management]]
+  - [[#how-we-used-git][How we used Git]]
 
-* nothing yet
+* What is Minishell?
+The Minishell project at 42 School is a programming assignment where students are tasked with creating a simple shell, oriented and similar bash. This project helps students understand how a shell works, including aspects like command execution, input/output redirection, and process handling. The primary goals are to learn about parsing commands, managing environments and processes, and implementing built-in shell functions. It requires knowledge of system calls and a good grasp of C programming.
+
+The Minishell project being a group project at 42 School introduces students to collaboration and working in teams, which is an essential skill in software development. Here are some aspects and challenges associated with this aspect:
+
+1. *Communication:* Clear and effective communication is crucial. Team members must regularly discuss their progress, challenges, and any changes to the project plan. (see [[*Tests and Test Driven Development][Tests and Test Driven Development]])
+
+2. *Version Control:* Utilizing tools like Git helps manage changes and contributions from different team members. It also helps resolve merge conflicts and track project history. (see [[*How we used Git][How we used Git]])
+
+3. *Task Division:* Identifying each member's strengths and dividing tasks accordingly can optimize productivity. This includes delegating tasks like parsing, built-in command implementation, and handling processes. (see [[Building Blocks]])
+
+4. *Consistency:* Ensuring that code style and project structure remain consistent across the work of different team members can be difficult but is important for maintainability. (see [[*Tests and Test Driven Development][Tests and Test Driven Development]])
+
+5. *Time Management:* Coordinating schedules and setting realistic deadlines is necessary to ensure that the project progresses smoothly without last-minute rushes. (see [[*Time management][Time management]])
+
+Overall, the group aspect of the Minishell project teaches students not only technical skills but also soft skills, such as teamwork and conflict resolution, which are critical in real-world software development.
+
+* Building Blocks
+
+** Lexer
+- main idea is to have a line container
+** Parser
+- developed in a test driven manner
+- AST is binary tree
+  - apart from logical Nodes, the nodes are left heavy
+** Executor
+- first executing a command in and of itself
+  - expansions
+  - redirections
+  - arguments
+  - builtins
+  - signals
+- then executing pipelines
+- then executing logical nodes
+* How the project went
+- lots of reading of documentation of how bash works
+- communication between partners
+  - trust between partners heavily on tests
+  - communication about behavior heavily relying on tests, especially during lexer and parser stage
+- correct parsing of strings is a big part
+  - over-engineering in the beginning has been a problem that bid us later because of variety of cases that can appear, with the bash "laisse-faire" approach of expansions etc.
+** Tests and Test Driven Development
+** Time management
+** How we used Git
