@@ -1,4 +1,4 @@
-# t<sub>scriptnode</sub>
+# Script node
 
 ``` c
 typedef struct s_script_node
@@ -17,3 +17,24 @@ typedef struct s_script_node
   - Links to other nodes via the `upstream` and `downstream` pointers,
     facilitating the tree structure.
   - Can have a varying number of children, indicated by `num_children`.
+
+# Example Command structure
+
+A command like
+
+``` shell
+(echo "hello" && wc -l < input.txt ) || (echo "World" | cat > output.txt)
+```
+
+could be illustrated as follows
+
+``` 
+                       [|| (OR)]
+               /                        \
+         [&& (AND)]                    [PIPE]
+          /     \                    /         \
+       (CMD)     (CMD REDIR)   (CMD)        (REDIR)
+       [echo]    [wc -l]        [echo]        [cat]
+        |           |              |            |
+Args: "hello"     input.txt       "World"    output.txt
+```
