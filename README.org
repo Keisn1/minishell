@@ -18,7 +18,7 @@
   - [[#first-group-project][First Group project]]
   - [[#building-blocks][Building blocks]]
 - [[#how-the-project-went][How the project went]]
-  - [[#tests-and-test-driven-development][Tests and Test Driven Development]]
+  - [[#tests-and-test-driven-development][Tests and Test-Driven Development]]
   - [[#how-we-used-git][How we used Git]]
 - [[#the-parts][The parts]]
 
@@ -68,7 +68,30 @@ Correctly parsing and interpreting commands proved to be crucial; we faced issue
 
 We relied heavily on tests, detailed further in the [[*Tests and Test Driven Development][Tests and Test Driven Development]] section, to guide our development and ensure reliability.
 
-** Tests and Test Driven Development
+** Tests and Test-Driven Development
+- The biggest benefit of writing good tests lies in communication
+- Throughout the project, we communicated via the tests we wrote
+- The tests gave us confidence to move forward and security that we hadn't broken anything.
+- Especially during the development phase of the lexer and parser, we used tests to clarify what our code actually did and what we wanted to achieve
+- Moreover, we were able to introduce changes quickly and effectively.
+  - At one point, we needed to remove a lot of logic from the lexer/parser that was limiting our ability to do certain things in the execution part
+  - This change was surprisingly easy to accomplish because we could rely on the tests.
+    - They indicated what and where changes were needed
+    - We were able to use them to adapt the behavior
+- The tests ensured a good relationship between team members
+  - Pointing to a failed test is much easier than communicating doubts about someone else's code
+  - Writing new tests in an easily expandable test environment helps erase doubts and enhance trust
+*** During the development of the lexer/parser:
+- We heavily relied on unit tests
+- The structure (objects/keywords/functions) developed organically and in constant communication because our tests kept track of what was added or removed
+- Especially the parser was developed in a test-driven manner, with tests written first and code written afterward
+*** During the development of the executor:
+  - We wrote end-to-end tests with Python instead of unit tests for the parser and lexer.
+  - If something didn't break the end-to-end tests, it was deemed good enough to be pushed.
+  - If something broke, fixing it was of utmost priority.
+  - If new behavior was introduced, we wrote tests for it to ensure it was tracked.
+  - We maintained this practice almost to the end of the project, where small issues were handled more quickly as we aimed to complete the project.
+  - In the end, we also relied on another tester created by other students at 42.
 ** How we used Git
 - Initially, we developed the lexer and parser on separate branches, merging them once they could be combined into a REPL to begin work on the executor
 - When we started on the executor, one team member focused on variable expansion while the other handled redirections and command execution, still on separate branches

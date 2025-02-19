@@ -127,6 +127,53 @@ development and ensure reliability.
 
 ## Tests and Test Driven Development
 
+  - the biggest benefit of writing good tests lies in communication
+  - throughout the project we were communicating via the tests that we
+    have written
+  - the tests were giving us confidence to move forward and security
+    that we haven't broke anything
+  - especially in the phase of developing of the lexer and parser, we
+    used the tests to talk about what our code actually does, and what
+    we wanted to achieve
+  - moreover we were able to introduce change quickly and effectively
+      - at one point we needed to remove a lot of logic lexer/parser,
+        that was limiting our ability to do certain things in the
+        execution part
+      - this change was surprinsingly easy to accomplish, because we
+        could rely on the tests
+          - they were telling us, what and where it would change
+          - we were able to use them, to adapt the behavior
+  - the tests ensure a good relation between the team members
+      - pointing to a test that breaks is a much easier thing to say
+        than to communicate some doubt in the code of the other
+      - writing a new test in a test environment that is easy to expand,
+        makes it easy to erase doubts and enhance trust
+
+### during the development of the lexer/parser
+
+  - heavy reliance on unittests
+  - the structure (objects/keywords/functions) developed organically and
+    in constant communcation because our tests were keeping track of
+    what is beeing added or removed
+  - especially the parser was developed in a Test Driven manner, writing
+    tests first and write the code afterwards
+
+### during the development of the executor
+
+  - we were writing end-to-end tests with python, instead of unittests
+    for the parser and lexer
+  - if something didn't break the end-to-end tests, it was good enough
+    to be pushed
+  - if something was breaking, it was of up-most priority to fix this
+    issue
+  - if there was a new behavior introduced, we tried to write a test for
+    it, so that it is being tracked
+  - we were able to keep this behavior almost up to the end of the
+    project, where small issues where handled more quickly and we wanted
+    to get it done
+  - at the end, we relied also on another tester that was created by
+    other 42 students at one point
+
 ## How we used Git
 
   - Initially, we developed the lexer and parser on separate branches,
