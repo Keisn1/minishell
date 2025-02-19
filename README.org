@@ -19,7 +19,6 @@
   - [[#building-blocks][Building blocks]]
 - [[#how-the-project-went][How the project went]]
   - [[#tests-and-test-driven-development][Tests and Test Driven Development]]
-  - [[#time-management][Time management]]
   - [[#how-we-used-git][How we used Git]]
 - [[#the-parts][The parts]]
 
@@ -37,7 +36,7 @@ The Minishell project being a group project at 42 School introduces students to 
 
 4. *Consistency:* Ensuring that code style and project structure remain consistent across the work of different team members can be difficult but is important for maintainability. (see [[*Tests and Test Driven Development][Tests and Test Driven Development]])
 
-5. *Time Management:* Coordinating schedules and setting realistic deadlines is necessary to ensure that the project progresses smoothly without last-minute rushes. (see [[*Time management][Time management]])
+5. *Time Management:* Coordinating schedules and setting realistic deadlines is necessary to ensure that the project progresses smoothly without last-minute rushes. (see [[*How the project went][How the project went]])
 
 Overall, the group aspect of the Minishell project teaches students not only technical skills but also soft skills, such as teamwork and conflict resolution, which are critical in real-world software development.
 ** Building blocks
@@ -70,8 +69,10 @@ Correctly parsing and interpreting commands proved to be crucial; we faced issue
 We relied heavily on tests, detailed further in the [[*Tests and Test Driven Development][Tests and Test Driven Development]] section, to guide our development and ensure reliability.
 
 ** Tests and Test Driven Development
-** Time management
 ** How we used Git
+- Initially, we developed the lexer and parser on separate branches, merging them once they could be combined into a REPL to begin work on the executor
+- When we started on the executor, one team member focused on variable expansion while the other handled redirections and command execution, still on separate branches
+- Nonetheless, at a certain point, our project began evolving organically, and we started adding features on the same branch, maintaining constant communication to avoid conflicts
 
 * The parts
 For detailed information on the [[https://github.com/Keisn1/minishell/tree/main/src/lexer][lexer]]'s role in tokenizing input, the [[https://github.com/Keisn1/minishell/tree/main/src/parser][parser]]'s function in interpreting command structures, and the [[https://github.com/Keisn1/minishell/tree/main/src/executor][executor]]'s job of handling command execution, as well as the setup of the [[https://github.com/Keisn1/minishell/tree/main/src/main][REPL (main execution)]] please refer to the respective README files.

@@ -15,7 +15,6 @@
   - [How the project went](#how-the-project-went)
       - [Tests and Test Driven
         Development](#tests-and-test-driven-development)
-      - [Time management](#time-management)
       - [How we used Git](#how-we-used-git)
   - [The parts](#the-parts)
 
@@ -45,7 +44,7 @@ associated with this aspect:
 2.  **Version Control:** Utilizing tools like Git helps manage changes
     and contributions from different team members. It also helps resolve
     merge conflicts and track project history. (see
-    [3.3](#*How%20we%20used%20Git))
+    [3.2](#*How%20we%20used%20Git))
 
 3.  **Task Division:** Identifying each member's strengths and dividing
     tasks accordingly can optimize productivity. This includes
@@ -60,7 +59,7 @@ associated with this aspect:
 5.  **Time Management:** Coordinating schedules and setting realistic
     deadlines is necessary to ensure that the project progresses
     smoothly without last-minute rushes. (see
-    [3.2](#*Time%20management))
+    [3](#*How%20the%20project%20went))
 
 Overall, the group aspect of the Minishell project teaches students not
 only technical skills but also soft skills, such as teamwork and
@@ -128,9 +127,17 @@ development and ensure reliability.
 
 ## Tests and Test Driven Development
 
-## Time management
-
 ## How we used Git
+
+  - Initially, we developed the lexer and parser on separate branches,
+    merging them once they could be combined into a REPL to begin work
+    on the executor
+  - When we started on the executor, one team member focused on variable
+    expansion while the other handled redirections and command
+    execution, still on separate branches
+  - Nonetheless, at a certain point, our project began evolving
+    organically, and we started adding features on the same branch,
+    maintaining constant communication to avoid conflicts
 
 # The parts
 
