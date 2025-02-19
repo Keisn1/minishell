@@ -1,3 +1,6 @@
+![](cover-minishell-bonus.png)
+
+<p align="center">
 <img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/Keisn1/minishell?color=blueviolet" />
 <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/Keisn1/minishell?color=blue" />
 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/Keisn1/minishell?color=brightgreen" />
@@ -53,10 +56,22 @@ associated with this aspect:
     difficult but is important for maintainability. (see
     [4.1](#*Tests%20and%20Test%20Driven%20Development))
 
-5.  **Time Management:** Coordinating schedules and setting realistic
+\<\<\<\<\<\<\< variant A
+
+1.  **Time Management:** Coordinating schedules and setting realistic
     deadlines is necessary to ensure that the project progresses
     smoothly without last-minute rushes. (see
     [4.2](#*Time%20management))
+
+\>\>\>\>\>\>\> variant B
+
+1.  **Time Management:** Coordinating schedules and setting realistic
+    deadlines is necessary to ensure that the project progresses
+    smoothly without last-minute rushes. (see
+    [4.2](#*Time%20management)) ([4.2](#*Time%20management)
+    )[4.2](#*Time%20management)
+
+`=====` end
 
 Overall, the group aspect of the Minishell project teaches students not
 only technical skills but also soft skills, such as teamwork and
