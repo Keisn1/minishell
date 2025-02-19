@@ -38,14 +38,15 @@ A command like
 could be illustrated as follows
 
 ``` 
-                       [|| (OR)]
-               /                        \
-         [&& (AND)]                    [PIPE]
-          /     \                    /         \
-       (CMD)     (CMD REDIR)   (CMD)        (REDIR)
-       [echo]    [wc -l]        [echo]        [cat]
-        |           |              |            |
-Args: "hello"     input.txt       "World"    output.txt
+                             [|| (OR)]
+                     /                        \
+               [&& (AND)]                    [PIPE]
+                /     \                    /         \
+             (CMD)     (CMD W_REDIR)   (CMD)        (CMD W_REDIR)
+             [echo]    [wc -l]        [echo]        [cat]
+              |           |              |            |
+Arguments:  "hello"       -            "World"        -
+Redirects:             input.txt                 output.txt
 ```
 
 # Parsing order
