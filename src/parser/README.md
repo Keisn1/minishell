@@ -50,9 +50,23 @@ Args: "hello"     input.txt       "World"    output.txt
 
 # Parsing order
 
-The entry point for the parsing is the parse function [parse
-function](parser.c::t_script_node%20*parse\(t_dllist%20*tokens\)). The
-function is recursive.
+``` c
+t_script_node   *parse(t_dllist *tokens)
+{
+        ...
+                tokens = find_last_logical(tokens);
+        if (((t_token *)tokens->content)->type == AND
+                || ((t_token *)tokens->content)->type == OR)
+                return (parse_logical(tokens));
+        tokens = find_last_pipe(tokens);
+        if (((t_token *)tokens->content)->type == PIPE)
+                return (parse_pipe(tokens));
+        return (parse_cmd(tokens));
+}
+```
+
+The entry point for the parsing is the parse function. The function is
+recursive.
 
 1.  find the last *logical operator token*
     1.  parse the downstream **pipeline**
