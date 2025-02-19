@@ -15,18 +15,18 @@
 
 * Table of Content :TOC_2:
 - [[#what-is-minishell][What is Minishell?]]
-- [[#building-blocks][Building Blocks]]
-  - [[#lexer][Lexer]]
-  - [[#parser][Parser]]
-  - [[#executor][Executor]]
+  - [[#first-group-project][First Group project]]
+  - [[#building-blocks][Building blocks]]
 - [[#how-the-project-went][How the project went]]
   - [[#tests-and-test-driven-development][Tests and Test Driven Development]]
   - [[#time-management][Time management]]
   - [[#how-we-used-git][How we used Git]]
+- [[#the-parts][The parts]]
 
 * What is Minishell?
 The Minishell project at 42 School is a programming assignment where students are tasked with creating a simple shell, oriented and similar bash. This project helps students understand how a shell works, including aspects like command execution, input/output redirection, and process handling. The primary goals are to learn about parsing commands, managing environments and processes, and implementing built-in shell functions. It requires knowledge of system calls and a good grasp of C programming.
 
+** First Group project
 The Minishell project being a group project at 42 School introduces students to collaboration and working in teams, which is an essential skill in software development. Here are some aspects and challenges associated with this aspect:
 
 1. *Communication:* Clear and effective communication is crucial. Team members must regularly discuss their progress, challenges, and any changes to the project plan. (see [[*Tests and Test Driven Development][Tests and Test Driven Development]])
@@ -40,24 +40,25 @@ The Minishell project being a group project at 42 School introduces students to 
 5. *Time Management:* Coordinating schedules and setting realistic deadlines is necessary to ensure that the project progresses smoothly without last-minute rushes. (see [[*Time management][Time management]])
 
 Overall, the group aspect of the Minishell project teaches students not only technical skills but also soft skills, such as teamwork and conflict resolution, which are critical in real-world software development.
+** Building blocks
+The building blocks of the Minishell project typically include the following components:
 
-* Building Blocks
+1. *Command Parsing:* This involves reading and interpreting the user input to break it down into commands and arguments. It requires handling different types of inputs, such as strings with quotes, escaped characters, and special symbols like pipes (=|=) and redirections (=<=, =>=) as well as logical operator (=&&= and =||=) and wildcards (=*=) if you do the bonus, which we have done.
 
-** Lexer
-- main idea is to have a line container
-** Parser
-- developed in a test driven manner
-- AST is binary tree
-  - apart from logical Nodes, the nodes are left heavy
-** Executor
-- first executing a command in and of itself
-  - expansions
-  - redirections
-  - arguments
-  - builtins
-  - signals
-- then executing pipelines
-- then executing logical nodes
+2. *Execution of Commands:* Implementing logic to execute both built-in commands (such as =cd=, =echo=, =exit=) and external commands by forking processes and using system calls like =execve=.
+
+3. *Environment Handling:* Managing environment variables, which includes retrieving, setting, and updating variables that are required for command execution and shell operations.
+
+4. *Input/Output Redirection:* Implementing the ability to redirect input and output streams using operators like =>=, =>>=, and =<=, allowing users to redirect stdout and stdin to files or other commands.
+
+5. *Pipelines:* Supporting the use of pipelines, where the output of one command serves as the input for another, is done through inter-process communication.
+
+6. *Signal Handling:* Managing signals such as =Ctrl+C= and =Ctrl+Z= to terminate or suspend processes properly, ensuring the shell remains responsive to user input.
+
+7. *Built-in Commands:* Developing built-in functions for commonly used shell commands that are executed directly within the shell without calling external executables.
+
+These components come together to form a functional shell, providing a simplified yet educational experience of how terminal interfaces operate at a basic level.
+
 * How the project went
 - lots of reading of documentation of how bash works
 - communication between partners
@@ -71,3 +72,5 @@ Overall, the group aspect of the Minishell project teaches students not only tec
 :ID:       cb33fd10-6cc4-42bc-84e6-eeb68a80f377
 :END:
 ** How we used Git
+* The parts
+For detailed information on the lexer's role in tokenizing input, the parser's function in interpreting command structures, and the executor's job of handling command execution, please refer to the respective README files.
