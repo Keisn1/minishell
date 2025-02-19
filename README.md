@@ -128,7 +128,13 @@ at a basic level.
 
 # The parts
 
-For detailed information on the lexer's role in tokenizing input, the
-parser's function in interpreting command structures, and the executor's
-job of handling command execution, please refer to the respective README
-files.
+For detailed information on the
+[lexer](https://github.com/Keisn1/minishell/tree/main/src/lexer)'s role
+in tokenizing input, the
+[parser](https://github.com/Keisn1/minishell/tree/main/src/parser)'s
+function in interpreting command structures, and the
+[executor](https://github.com/Keisn1/minishell/tree/main/src/executor)'s
+job of handling command execution, as well as the setup of the [REPL
+(main
+execution)](https://github.com/Keisn1/minishell/tree/main/src/main)
+please refer to the respective README files.

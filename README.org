@@ -73,4 +73,4 @@ These components come together to form a functional shell, providing a simplifie
 :END:
 ** How we used Git
 * The parts
-For detailed information on the lexer's role in tokenizing input, the parser's function in interpreting command structures, and the executor's job of handling command execution, please refer to the respective README files.
+For detailed information on the [[https://github.com/Keisn1/minishell/tree/main/src/lexer][lexer]]'s role in tokenizing input, the [[https://github.com/Keisn1/minishell/tree/main/src/parser][parser]]'s function in interpreting command structures, and the [[https://github.com/Keisn1/minishell/tree/main/src/executor][executor]]'s job of handling command execution, as well as the setup of the [[https://github.com/Keisn1/minishell/tree/main/src/main][REPL (main execution)]] please refer to the respective README files.
