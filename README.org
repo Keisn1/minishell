@@ -37,11 +37,7 @@ The Minishell project being a group project at 42 School introduces students to 
 
 4. *Consistency:* Ensuring that code style and project structure remain consistent across the work of different team members can be difficult but is important for maintainability. (see [[*Tests and Test Driven Development][Tests and Test Driven Development]])
 
-<<<<<<< variant A
 5. *Time Management:* Coordinating schedules and setting realistic deadlines is necessary to ensure that the project progresses smoothly without last-minute rushes. (see [[*Time management][Time management]])
->>>>>>> variant B
-5. *Time Management:* Coordinating schedules and setting realistic deadlines is necessary to ensure that the project progresses smoothly without last-minute rushes. (see [[*Time management][Time management]]) ([[*Time management][Time management]]  )[[*Time management][Time management]]
-======= end
 
 Overall, the group aspect of the Minishell project teaches students not only technical skills but also soft skills, such as teamwork and conflict resolution, which are critical in real-world software development.
 
